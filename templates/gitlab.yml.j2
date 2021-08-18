@@ -40,7 +40,7 @@ services:
         - traefik.http.routers.gitlab-http.service=gitlab
         - traefik.http.services.gitlab.loadbalancer.server.port=8443
         # registry
-        - traefik.http.routers.gitlab-registry.rule=Host(`{{ registry_domain }}`)
+        - traefik.http.routers.gitlab-registry.rule=Host(`{{ gitlab_registry_domain }}`)
         - traefik.http.routers.gitlab-registry.tls=true
         - traefik.http.routers.gitlab-registry.tls.certresolver=le
         - traefik.http.routers.gitlab-registry.entrypoints=https
