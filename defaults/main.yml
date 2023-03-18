@@ -1,3 +1,6 @@
+gitlab_image: gitlab-ce
+gitlab_version: latest
+
 gitlab_domain: gitlab.local.example.com
 gitlab_root_password: changethis
 gitlab_registry_domain: registry.local.example.com
@@ -11,6 +14,8 @@ gitlab_smtp_domain: example.com
 gitlab_smtp_authentication: login
 gitlab_smtp_enable_starttls_auto: true
 
+gitlab_email_from: gitlab@cgitlab.example.com
+gitlab_email_reply_to: noreply@gitlab.example.com
 
 gitlab_omniauth_azuread_enabled: true
 gitlab_az_app_client_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
