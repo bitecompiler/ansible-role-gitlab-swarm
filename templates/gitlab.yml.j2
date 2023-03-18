@@ -1,19 +1,19 @@
 version: "3.6"
 services:
   gitlab:
-    image: gitlab/gitlab-ce:latest
+    image: gitlab/{{ gitlab_image }}:{{ gitlab_version }}
     ports:
       - "2222:22"
-      - "9090:9090"
-      - "5000:5000"
+      - "9090:9090" # Prometheus
+      - "5000:5000" # Registry
     volumes:
       - gitlab-data:/var/opt/gitlab
       - gitlab-logs:/var/log/gitlab
       - gitlab-config:/etc/gitlab
     environment:
-      GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
+      GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')" # Tell GitLab what config to use
     configs:
-      - source: gitlab
+      - source: gitlab # Pass-though the config defined below
         target: /omnibus_config.rb
     secrets:
       - gitlab_root_password
@@ -56,7 +56,7 @@ services:
       replicas: 1
 configs:
   gitlab:
-    name: gitlab-{{ansible_date_time.epoch}}
+    name: gitlab-{{ ansible_date_time.epoch }} # Docker configs need unique names when updating a swarm deployment
     file: ./gitlab.rb
 secrets:
   gitlab_root_password:
