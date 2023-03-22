@@ -47,13 +47,13 @@ services:
         - traefik.http.routers.gitlab-registry.service=gitlab-registry
         - traefik.http.services.gitlab-registry.loadbalancer.server.port=5000
 
-  gitlab-runner:
-    image: gitlab/gitlab-runner:alpine
-    networks:
-      - net
-    deploy:
-      mode: replicated
-      replicas: 1
+  #gitlab-runner:
+  #  image: gitlab/gitlab-runner:alpine
+  #  networks:
+  #    - net
+  #  deploy:
+  #    mode: replicated
+  #    replicas: 1
 configs:
   gitlab:
     name: gitlab-{{ ansible_date_time.epoch }} # Docker configs need unique names when updating a swarm deployment
